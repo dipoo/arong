@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="libs/jaxen-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/LeanLabor/WebRoot/WEB-INF/lib/poi-3.1-FINAL-20080629.jar"/>
+	<classpathentry kind="lib" path="/LeanLabor/WebRoot/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
