@@ -5,7 +5,7 @@
  * History:Jun 27, 2011
  * version 1.0
  */
-package org.arong.util;
+package org.arong.util.excel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
