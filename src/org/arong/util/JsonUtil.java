@@ -5,12 +5,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.arong.jdbc.GenericDaoUtil;
-import org.arong.jdbc.User;
 /**
  * 封装了将各种对象、集合转换成json字符串的方法
  * @author arong
@@ -184,6 +182,7 @@ public final class JsonUtil {
 	 *            Map<Object, Object>的集合
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static String mapList2Json(List<Map<Object, Object>> list) {
 		// 定义json的可变字符串
 		StringBuilder json = new StringBuilder("[");
@@ -201,7 +200,12 @@ public final class JsonUtil {
 				value = map.get(name);
 				if (value == null)
 					value = "null";
-				executeAppend(sb, "{", name.toString(), value);
+				//如果还包含有集合，则递归
+				if(value instanceof List){
+					executeAppend(sb, "{", name.toString(), mapList2Json((List)value));
+				}else{
+					executeAppend(sb, "{", name.toString(), value);
+				}
 			}
 			// 拼接成完整的{}对
 			sb.append("}");
@@ -417,10 +421,26 @@ public final class JsonUtil {
 		return sb.toString();
 	}
 	public static void main(String[] args) {
-		List<User> users = GenericDaoUtil.getBeanList("select * from user",
-				User.class);
-		users.get(0).setUser(users.get(1));
-		String sss = bean2Json(users.get(0));
+		List<Map<Object, Object>> list = new ArrayList<Map<Object,Object>>();
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("name", "zsr");
+		map.put("gender", "male");
+		map.put("age", "18");
+		map.put("job", "java工程师");
+		List<Map> in_list = new ArrayList<Map>();
+		Map map_1 = new HashMap();
+		map_1.put("er", "1232");
+		map_1.put("gp", "12342");
+		map_1.put("lk", "23123");
+		in_list.add(map_1);
+		Map map_2 = new HashMap();
+		map_2.put("er", "1122");
+		map_2.put("gp", "11342");
+		map_2.put("lk", "24123");
+		in_list.add(map_2);
+		map.put("datas", in_list);
+		list.add(map);
+		String sss = mapList2Json(list);
 		System.out.println(sss);
 	}
 }
