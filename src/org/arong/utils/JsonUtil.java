@@ -5,9 +5,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.arong.util.BeanUtil;
 
 /**
  * 封装了将各种对象、集合转换成json字符串的方法
@@ -413,5 +416,123 @@ public final class JsonUtil {
 		}
 		sb.append("}");
 		return sb.toString();
+	}
+	
+	/**
+	 * 简单(不嵌套)json字符串转换为map<br>
+	 * 约定：key必须要有引号,引号为双引号
+	 * @param json
+	 * @return Map
+	 */
+	public static Map<String, String> json2Map(String json){
+		if(json != null && !"".equals(json.trim())){
+			if('{' == json.charAt(0)){
+				if('}' == json.charAt(json.length() - 1)){
+					json = json.substring(2, json.length() - 1);
+					String[] arr = json.split(",\"");
+					String[] kv;
+					Map<String, String> data = new HashMap<String, String>();
+					for(int i = 0; i < arr.length; i ++){
+						if(arr[i].indexOf("\":") != -1){
+							kv = arr[i].split("\":");
+							if('"' == kv[1].charAt(0) && '"' == kv[1].charAt(kv[1].length() - 1)){
+								data.put(kv[0], kv[1].substring(1, kv[1].length() - 1));
+							}else{
+								data.put(kv[0], kv[1]);
+							}
+						}else{
+							throw new RuntimeException("json格式错误");
+						}
+					}
+					return data;
+				}else{
+					throw new RuntimeException("json尾字符不为：}");
+				}
+			}else{
+				throw new RuntimeException("json首字符不为：{");
+			}
+		}else{
+			throw new RuntimeException("json为空");
+		}
+	}
+	
+	/**
+	 * 简单(不嵌套)json字符串转换为javabean<br>
+	 * javabean中的字段有set方法，且字段名与json的key一致
+	 * @param <T>
+	 * @param clazz
+	 * @param json
+	 * @return T
+	 */
+	public static <T> T json2bean(Class<T> clazz, String json){
+		Map<String, String> map = json2Map(json);
+		T t = null;
+		try {
+			t = clazz.newInstance();
+			if(map != null){
+				for(String key : map.keySet()){
+					BeanUtil.setProperty(t, key, new String[]{map.get(key)});
+				}
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return t;
+	}
+	
+	/**
+	 * 简单(不嵌套)json数组字符串转换为map集合
+	 * @param json
+	 * @return List<Map<String,String>>
+	 */
+	public static List<Map<String, String>> jsonArray2MapList(String json){
+		if(json != null && !"".equals(json.trim())){
+			if('[' == json.charAt(0)){
+				if(']' == json.charAt(json.length() - 1)){
+					json = json.substring(2, json.length() - 2);
+					String[] arr = json.split("\\},\\{");
+					List<Map<String, String>> maps = new ArrayList<Map<String,String>>();
+					for(int i = 0; i < arr.length; i ++){
+						maps.add(json2Map("{" + arr[i] + "}"));
+					}
+					return maps;
+				}else{
+					throw new RuntimeException("json尾字符不为：]");
+				}
+			}else{
+				throw new RuntimeException("json首字符不为：[");
+			}
+		}else{
+			throw new RuntimeException("json为空");
+		}
+	}
+	
+	/**
+	 * 简单(不嵌套)json数组字符串转换为javabean集合
+	 * @param json
+	 * @return List<T>
+	 */
+	public static <T> List<T> jsonArray2beanList(Class<T> clazz, String json){
+		if(json != null && !"".equals(json.trim())){
+			if('[' == json.charAt(0)){
+				if(']' == json.charAt(json.length() - 1)){
+					json = json.substring(2, json.length() - 2);
+					String[] arr = json.split("\\},\\{");
+					List<T> beans = new ArrayList<T>();
+					for(int i = 0; i < arr.length; i ++){
+						beans.add(json2bean(clazz, "{" + arr[i] + "}"));
+					}
+					return beans;
+				}else{
+					throw new RuntimeException("json尾字符不为：]");
+				}
+			}else{
+				throw new RuntimeException("json首字符不为：[");
+			}
+		}else{
+			throw new RuntimeException("json为空");
+		}
 	}
 }
