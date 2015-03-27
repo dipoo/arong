@@ -1,4 +1,4 @@
-package org.arong.utils;
+package org.arong.bean;
 
 import java.beans.Introspector;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +10,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class BeanUtil {
+import org.arong.jdbc.User;
+import org.arong.utils.NumberUtil;
+
+public class BeanUtil<T> {
 	/**
 	 * 实现与BeanUtils.setProperty()类似功能
 	 * 
@@ -178,4 +181,5 @@ public class BeanUtil {
 		}
 		return date;
 	}
+	
 }

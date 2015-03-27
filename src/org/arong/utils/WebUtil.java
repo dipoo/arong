@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.arong.bean.BeanUtil;
+
 public final class WebUtil {
 	/**
 	 * tomcat example里的一个用于过滤html特殊字符的方法
