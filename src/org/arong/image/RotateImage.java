@@ -22,7 +22,7 @@ import javax.imageio.stream.ImageOutputStream;
  */
 public class RotateImage {
 	public static void main(String[] args) throws IOException {
-		BufferedImage src = ImageIO.read(new File("f:/000.jpg"));
+		/*BufferedImage src = ImageIO.read(new File("f:/000.jpg"));
 		InputStream is = rotateImgAsInputStream(src, 280, null);
 		FileOutputStream fos = new FileOutputStream("f:/003.jpg");
 		byte[] b = new byte[1024];
@@ -32,7 +32,15 @@ public class RotateImage {
 		}
 		fos.flush();
 		fos.close();
-		is.close();
+		is.close();*/
+		
+		/**
+		 * 关于matrix(cosθ,sinθ,-sinθ,cosθ,0,0)
+		 */
+		//获取角度
+		System.out.println(Math.toDegrees(Math.acos(0.8829480)));//28
+		
+		
 	}
 	
 	public static InputStream rotateImgAsInputStream(BufferedImage image, int degree, Color bgcolor) throws IOException {
