@@ -99,7 +99,7 @@ public final class FileUtil {
 	 * @param size
 	 * @return
 	 */
-	public static String showSizeStr(int size){
+	public static String showSizeStr(long size){
 		String s = "0B";
 		double d = (double)size;
 		DecimalFormat df = new DecimalFormat("#####0.00");
