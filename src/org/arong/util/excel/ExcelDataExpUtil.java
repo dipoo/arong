@@ -4,7 +4,7 @@
  * @author  XiaoLiming
  * History:Jun 27, 2011
  * version 1.0
- */
+ *//*
 package org.arong.util.excel;
 
 import java.io.ByteArrayOutputStream;
@@ -25,11 +25,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
 
-/**
+*//**
  * 导出
  * @author Administrator
  * 2012.11.17
- */
+ *//*
 public class ExcelDataExpUtil {
 	
 	
@@ -121,21 +121,21 @@ public class ExcelDataExpUtil {
   }
 	
 	
-	/**
+	*//**
 	 * 
 	 * @param title 表头
 	 * @param datalist  数据
 	 * @param columns 行
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
 	public HSSFWorkbook commExpExcel( List<String> title,
 			List<Map<String, String>> datalist,String[] columns)
 			throws Exception {
 		return commExpExcel(title, datalist, columns, "");
 	}
 	
-	/**
+	*//**
 	 * 
 	 * @param title 表头
 	 * @param datalist  数据
@@ -143,7 +143,7 @@ public class ExcelDataExpUtil {
 	 * @param empty 值为空时单元格默认值
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
 	public HSSFWorkbook commExpExcel( List<String> title,
 			List<Map<String, String>> datalist,String[] columns, String empty)
 			throws Exception {
@@ -203,9 +203,9 @@ public class ExcelDataExpUtil {
 		            	   //colValue = beanUtil.getProperty(map, columns[i]);             
 		                   //如果不是图片数据，就利用正则表达式判断textValue是否全部由数字组成
 		                   if(map.get(columns[i])!=null && !"".equals(map.get(columns[i]))){
-		                     /* if(colValue.length() >= 1500) {
+		                      if(colValue.length() >= 1500) {
 		                    	  colValue = colValue.substring(0, 1500);
-		                      }*/
+		                      }
 		                	   HSSFRichTextString richString = new HSSFRichTextString(new StringBuffer(map.get(columns[i]).toString()).toString());
 		                	   cell1.setCellValue(richString);
 		                   } else {
@@ -226,14 +226,14 @@ public class ExcelDataExpUtil {
 	}
 	
 	
-	/**
+	*//**
 	 * 
 	 * @param title 表头
 	 * @param datalist  数据
 	 * @param columns 行
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
 	public HSSFWorkbook commExpExcel( List<String> title,
 			List<Map<String, String>> datalist,String[] columns,int width)
 			throws Exception {
@@ -312,4 +312,4 @@ public class ExcelDataExpUtil {
 		}
          return workbook;
 	}
-}
+}*/

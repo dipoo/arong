@@ -2,7 +2,7 @@ package org.arong.jdbc;
 
 import java.util.Date;
 
-import org.arong.util.JsonUtil;
+import org.arong.utils.JsonUtil;
 
 public class User {
 

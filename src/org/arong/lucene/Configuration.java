@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.wltea.analyzer.lucene.IKAnalyzer;
+//import org.wltea.analyzer.lucene.IKAnalyzer;
 
 public class Configuration {
 	private static Directory dir = null; 
@@ -17,7 +17,7 @@ public class Configuration {
 		try {
 			dir = FSDirectory.open(new File("./indexLib"));
 			//分词器为IK
-			analyzer = new IKAnalyzer(true);
+//			analyzer = new IKAnalyzer(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

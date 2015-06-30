@@ -21,7 +21,7 @@ public class BeanUtil<T> {
 	 * @param name
 	 * @param values
 	 */
-	static void setProperty(Object obj, String name, String[] values) {
+	public static void setProperty(Object obj, String name, String[] values) {
 		Class<?> clazz = obj.getClass();
 		Method[] methods = clazz.getDeclaredMethods();
 		String methodName = null;

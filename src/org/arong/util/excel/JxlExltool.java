@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.bean.feedback;
+//import com.bean.feedback;
 
 import jxl.Workbook;
 import jxl.write.Label;
@@ -54,7 +54,7 @@ public class JxlExltool {
 
 			while (it.hasNext()) {
 				// 通过迭代获得arlist里的MarkesData对象
-				feedback temp = (feedback) it.next();
+				/*feedback temp = (feedback) it.next();
 
 				Label label1 = new Label(0, i, temp.getUserName());
 				Label label2 = new Label(1, i, temp.getTelephone());
@@ -77,7 +77,7 @@ public class JxlExltool {
 				sheet.addCell(label7);
 				sheet.addCell(label8);
 				sheet.addCell(label9);
-				sheet.addCell(label10);
+				sheet.addCell(label10);*/
 
 				i++;
 			}

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.arong.util.BeanUtil;
+import org.arong.bean.BeanUtil;
 
 /**
  * 封装了将各种对象、集合转换成json字符串的方法

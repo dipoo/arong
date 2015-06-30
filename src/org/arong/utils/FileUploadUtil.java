@@ -18,7 +18,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.arong.utils.WebUtil;
+import org.arong.bean.BeanUtil;
 
 
 public class FileUploadUtil {
@@ -211,7 +211,7 @@ public class FileUploadUtil {
 						String name = fileItem.getFieldName();
 						String value = fileItem.getString("UTF-8");
 						System.out.println(name + ":" + value);
-						WebUtil.setProperty(obj, name, new String[] { value });
+						BeanUtil.setProperty(obj, name, new String[] { value });
 						System.out.println(obj);
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
