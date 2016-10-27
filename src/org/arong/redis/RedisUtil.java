@@ -15,7 +15,7 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 public class RedisUtil {
 
-    //Redis服务器IP
+	//Redis服务器IP
     private static String HOST = RedisConfigManager.getProperty("redis.ip");
 
     //Redis的端口号
@@ -91,82 +91,261 @@ public class RedisUtil {
     }
 
     public static String setValue(String key, String value) {
-        return getJedis().set(key, value);
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key, value);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static Long setValue(String key, String field, String value) {
-        return getJedis().hset(key, field, value);
+    	Jedis jedis = null;
+    	Long result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.hset(key, field, value);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setValue(String key, String value, int seconds) {
-    	Jedis jedis = getJedis();
-        String result = jedis.set(key, value);
-        jedis.expire(key, seconds);
-
-        return result;
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key, value);
+	        jedis.expire(key, seconds);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setValueAtTime(String key, String value, long unixTime) {
-    	Jedis jedis = getJedis();
-    	String result = jedis.set(key, value);
-        jedis.expireAt(key, unixTime);
-
-        return result;
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key, value);
+	        jedis.expireAt(key, unixTime);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setObject(String key, Serializable object) {
-        String result = getJedis().set(key.getBytes(), SerializationUtils.serialize(object));
-
-        return result;
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key.getBytes(), SerializationUtils.serialize(object));
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setObject(String key, Serializable object, int seconds) {
-    	Jedis jedis = getJedis();
-        String result = jedis.set(key.getBytes(), SerializationUtils.serialize(object));
-        jedis.expire(key.getBytes(), seconds);
-
-        return result;
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key.getBytes(), SerializationUtils.serialize(object));
+	        jedis.expire(key.getBytes(), seconds);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setObjectAtTime(String key, Serializable object, long unixTime) {
-    	Jedis jedis = getJedis();
-        String result = jedis.set(key.getBytes(), SerializationUtils.serialize(object));
-        jedis.expireAt(key.getBytes(), unixTime);
-
-        return result;
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.set(key.getBytes(), SerializationUtils.serialize(object));
+	        jedis.expireAt(key.getBytes(), unixTime);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String setMap(String key, Map<String, String> value) {
-        return getJedis().hmset(key, value);
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.hmset(key, value);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String getValue(String key) {
-        return getJedis().get(key);
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.get(key);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static String getValue(String key, String field) {
-        return getJedis().hget(key, field);
+    	Jedis jedis = null;
+    	String result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.hget(key, field);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static Object getObject(String key) {
-        byte[] bytes = getJedis().get(key.getBytes());
+    	Jedis jedis = null;
+    	byte[] bytes = null;
+    	try {
+	    	jedis = getJedis();
+	    	bytes = jedis.get(key.getBytes());
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
 
         return bytes != null ? SerializationUtils.deserialize(bytes) : null;
     }
 
     public static List<String> getMap(String key, String... fields) {
-        return getJedis().hmget(key, fields);
+    	Jedis jedis = null;
+    	List<String> result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.hmget(key, fields);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static Long remove(String key) {
-        return getJedis().del(key);
+    	Jedis jedis = null;
+    	Long result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.del(key);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static Long remove(byte[] bytes) {
-        return getJedis().del(bytes);
+    	Jedis jedis = null;
+    	Long result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.del(bytes);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 
     public static Long remove(String key, String... fields) {
-        return getJedis().hdel(key, fields);
+    	Jedis jedis = null;
+    	Long result = null;
+    	try {
+	    	jedis = getJedis();
+	        result = jedis.hdel(key, fields);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if(jedis != null) {
+    			jedis.close();
+    		}
+    	}
+    	
+    	return result;
     }
 }
