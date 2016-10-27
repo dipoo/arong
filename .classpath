@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/software/tomcat-6.0.30/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="D:/software/tomcat-6.0.30/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="libs/jaxen-1.1.1.jar"/>
 	<classpathentry kind="lib" path="libs/mail-1.4.5.jar"/>
@@ -15,5 +13,14 @@
 	<classpathentry kind="lib" path="libs/lucene-core-3.6.2.jar"/>
 	<classpathentry kind="lib" path="libs/zxing-core-2.2.jar"/>
 	<classpathentry kind="lib" path="libs/zxing-javase-2.2.jar"/>
+	<classpathentry kind="lib" path="libs/jsch-0.1.54.jar"/>
+	<classpathentry kind="lib" path="libs/expect4j-1.9.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-1.2.9.jar"/>
+	<classpathentry kind="lib" path="libs/jakarta-oro-2.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.6.4.jar"/>
+	<classpathentry kind="lib" path="libs/jedis-2.8.0.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="libs/commons-pool2-2.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

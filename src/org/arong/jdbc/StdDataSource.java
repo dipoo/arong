@@ -7,7 +7,10 @@ import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.LinkedList;
+import java.util.logging.Logger;
+
 import javax.sql.DataSource;
 
 /**
@@ -143,5 +146,11 @@ public class StdDataSource implements DataSource {
 				return method.invoke(o, args);
 			}
 		}
+	}
+
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		// TODO Auto-generated method stub
+		return this.getParentLogger();
 	}
 }
