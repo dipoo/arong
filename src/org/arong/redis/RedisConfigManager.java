@@ -28,7 +28,16 @@ public class RedisConfigManager {
 		return config;
 	}
 	
-	public static String getProperty(String name) {
-		return config.get(name);
+	public static String getString(String name, String... defaultValue) {
+		return config.get(name) == null && defaultValue != null ? defaultValue[0] : config.get(name);
+	}
+	public static Integer getInteger(String name, Integer... defaultValue){
+		return config.get(name) == null && defaultValue != null  ? defaultValue[0] : Integer.parseInt(config.get(name));
+	}
+	public static Long getLong(String name, Long... defaultValue){
+		return config.get(name) == null && defaultValue != null  ? defaultValue[0] : Long.parseLong(config.get(name));
+	}
+	public static Boolean getBoolean(String name, Boolean... defaultValue){
+		return config.get(name) == null && defaultValue != null  ? defaultValue[0] : Boolean.valueOf(config.get(name));
 	}
 }
