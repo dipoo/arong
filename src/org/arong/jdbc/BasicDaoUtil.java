@@ -675,6 +675,8 @@ public class BasicDaoUtil {
 					method.invoke(t, rs.getBlob(name));
 				else if (paramType.equals("java.sql.Clob"))
 					method.invoke(t, rs.getClob(name));
+				else if (paramType.equals("java.math.BigInteger"))
+					method.invoke(t, rs.getLong(name));
 				else
 					method.invoke(t, rs.getObject(name));
 			}

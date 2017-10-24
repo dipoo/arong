@@ -146,7 +146,7 @@ public class RedisUtil {
         try {
             jedis = getJedis();
             result = jedis.set(prefix + key, value);
-            jedis.expire(key, seconds);
+            jedis.expire(prefix + key, seconds);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
@@ -199,7 +199,7 @@ public class RedisUtil {
         try {
             jedis = getJedis();
             result = jedis.set((prefix + key).getBytes(), SerializationUtils.serialize(object));
-            jedis.expire(key.getBytes(), seconds);
+            jedis.expire((prefix + key).getBytes(), seconds);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
