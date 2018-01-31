@@ -88,7 +88,8 @@ public class StringUtil {
 		}
 
 		public static void main(String[] args){
-		beforeTuning();
-		afterTuning();
+			String s = "<b style='color:#ea644a'>";
+			String t = "erere<b style='color:#ea644a'>sduhusd<b/>";
+			System.out.println(t.replaceAll(s, "123"));
 		}
 }
